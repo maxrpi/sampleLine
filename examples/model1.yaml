@@ -1,0 +1,75 @@
+%YAML 1.1
+---
+admin:
+  verbosity: 8
+
+sampling:
+  nSamples: 10000
+  outputFile: 'model1.csv'
+
+line:
+  defaults:
+    mean: 0.0
+    sigma: 0.1
+  nSteps: 4
+  steps:
+    step00:
+      type: initial
+      name: step000
+      dim: 1
+      mean: [0.0]
+      sigma: [0.1]
+    step01:
+      type: polynomial
+      name: step001
+      dim: 1
+      polynomials:
+        firstoutput:
+            output: 0
+            terms: 
+              term1: [[-1, 0], [1.0, 1.0]]
+            constant: [0.0]
+      mean: [0.0]
+      sigma: [0.3]
+    step02:
+      type: polynomial
+      name: step002
+      dim: 2
+      polynomials:
+        firstoutput:
+            output: 0
+            terms: 
+              term1: [[-1, 0], [1.0, 1.0]]
+              term2: [[-2, 0], [3.0, 2.0]]
+            constant: [0.0]
+        secondoutput:
+            output: 1
+            terms: 
+              term1: [[-1, 0], [1.0, 1.0]]
+              term2: [[-2, 0], [-1.1, 2.0]]
+            constant: [0.0]
+      mean: [0.0]
+      sigma: [0.1]
+    step03:
+      type: polynomial
+      dim: 2
+      polynomials:
+        firstoutput:
+            output: 0
+            terms: 
+              term1: [[-1, 1], [1.0, 1.0]]
+              term2: [[-1, 0], [1.0, 1.0]]
+              term3: [[-3, 0], [1.0, 1.0]]
+            constant: [1.0]
+        secondoutput:
+            output: 1
+            terms: 
+              term1: [[-1, 1], [1.0, 1.0]]
+              term2: [[-2, 0], [-2.1, 1.0]]
+            constant: [0.0]
+      mean: [0.0]
+      sigma: [0.1]
+
+yield:
+   threshold: [0.1, 0.2]
+
